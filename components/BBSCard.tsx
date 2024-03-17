@@ -1,3 +1,4 @@
+import { BBSData } from "@/app/types/types";
 import {
   Card,
   CardContent,
@@ -8,16 +9,21 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 
-const BBSCard = () => {
+interface BBSCardProps {
+  bbsData: BBSData;
+}
+
+const BBSCard = ({ bbsData }: BBSCardProps) => {
+  const { id, title, content, created_at } = bbsData;
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>ユーザー名</CardDescription>
       </CardHeader>
-      <CardContent></CardContent>
+      <CardContent>{content}</CardContent>
       <CardFooter className="flex justify-between">
-        <Link href={"/bbs-posts/1"} className="text-blue-500">
+        <Link href={`/bbs-posts/${id}`} className="text-blue-500">
           Learn more
         </Link>
       </CardFooter>
