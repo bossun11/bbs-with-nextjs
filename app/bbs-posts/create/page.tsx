@@ -1,5 +1,6 @@
 "use client";
 
+import { postBBSAction } from "@/app/actions/postBBSAction";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,7 +17,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const formSchema = z.object({
+export const formSchema = z.object({
   title: z
     .string()
     .min(2, { message: "タイトルは2文字以上で入力してください" })
@@ -40,19 +41,20 @@ const CreateBBSPage = () => {
 
   async function onSubmit(value: z.infer<typeof formSchema>) {
     const { title, content } = value;
-    try {
-      await fetch(`${process.env.NEXT_PUBLIC_FRONTEND_API_URL}/post`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, content }),
-      });
-      router.push("/");
-      router.refresh();
-    } catch (error) {
-      console.error(error);
-    }
+    postBBSAction({ title, content });
+    // try {
+    //   await fetch(`${process.env.NEXT_PUBLIC_FRONTEND_API_URL}/post`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ title, content }),
+    //   });
+    //   router.push("/");
+    //   router.refresh();
+    // } catch (error) {
+    //   console.error(error);
+    // }
   }
 
   return (
