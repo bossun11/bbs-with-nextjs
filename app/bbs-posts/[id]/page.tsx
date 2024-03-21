@@ -1,4 +1,6 @@
 import { BBSData } from "@/app/types/types";
+import EditBBSDialog from "@/components/EditBBSDialog";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 async function getDetailBBSData(id: number) {
@@ -28,12 +30,22 @@ const BBSDetailPage = async ({ params }: { params: { id: number } }) => {
         <p className="text-gray-900">{content}</p>
       </div>
 
-      <Link
-        href={"/"}
-        className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md"
-      >
-        戻る
-      </Link>
+      <div className="flex justify-between">
+        <Link href={"/"}>
+          <Button>戻る</Button>
+        </Link>
+
+        <div className="grid grid-cols-2 gap-2">
+          <EditBBSDialog />
+
+          <Link
+            href={"/"}
+            className="bg-red-500 text-white font-bold py-2 px-4 rounded-md"
+          >
+            削除
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
