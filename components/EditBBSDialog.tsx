@@ -51,7 +51,7 @@ const EditBBSDialog = ({ bbsDetailData }: EditBBSDialogProps) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <div className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md cursor-pointer">
+        <div className="bg-blue-500 text-white py-2 px-4 rounded-md cursor-pointer hover:bg-blue-500/90">
           編集
         </div>
       </DialogTrigger>
