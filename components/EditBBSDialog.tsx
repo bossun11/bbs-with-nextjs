@@ -24,13 +24,14 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useState } from "react";
 import { formSchema } from "@/app/utils/validationSchema";
+import { editBBSAction } from "@/app/actions/editBBSActiion";
 
 interface EditBBSDialogProps {
   bbsDetailData: BBSData;
 }
 
 const EditBBSDialog = ({ bbsDetailData }: EditBBSDialogProps) => {
-  const { title, content } = bbsDetailData;
+  const { title, content, id } = bbsDetailData;
   const [open, setOpen] = useState(false);
 
   const form = useForm({
@@ -42,7 +43,8 @@ const EditBBSDialog = ({ bbsDetailData }: EditBBSDialogProps) => {
   });
 
   async function onSubmit(value: z.infer<typeof formSchema>) {
-    console.log(value);
+    const { title, content } = value;
+    editBBSAction({ id, title, content });
     setOpen(false);
   }
 
