@@ -36,7 +36,7 @@ const BBSDetailPage = async ({ params }: { params: { id: number } }) => {
         </Link>
 
         <div className="grid grid-cols-2 gap-2">
-          <EditBBSDialog />
+          <EditBBSDialog bbsDetailData={bbsDetailData} />
 
           <Link
             href={"/"}

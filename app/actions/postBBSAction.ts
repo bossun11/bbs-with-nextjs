@@ -1,8 +1,9 @@
 "use server";
+
 import { z } from "zod";
-import { formSchema } from "../bbs-posts/create/page";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { formSchema } from "../utils/validationSchema";
 
 export const postBBSAction = async ({
   title,
